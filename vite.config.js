@@ -19,6 +19,6 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: 'terser'
+    minify: 'esbuild' // terser 대신 esbuild 사용
   }
 })
