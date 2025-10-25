@@ -6,10 +6,10 @@ import projectImg1 from '@/assets/images/projects/projectImg1.png'
 import projectImg2 from '@/assets/images/projects/projectImg2.png'
 import projectImg3 from '@/assets/images/projects/projectImg3.png'
 import projectImg4 from '@/assets/images/projects/projectImg4.png'
-import creativeImg1 from '@/assets/images/projects/creativeImg1.png'
-import creativeImg2 from '@/assets/images/projects/creativeImg2.png'
-import creativeImg3 from '@/assets/images/projects/creativeImg3.png'
-import creativeImg4 from '@/assets/images/projects/creativeImg4.png'
+import creativeImg1 from '@/assets/images/creative/creativeImg1.png'
+import creativeImg2 from '@/assets/images/creative/creativeImg2.png'
+import creativeImg3 from '@/assets/images/creative/creativeImg3.png'
+import creativeImg4 from '@/assets/images/creative/creativeImg4.png'
 /**
  * 데이터
  */
