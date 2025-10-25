@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, onUnmounted, onMounted } from 'vue'
 import ProjectCard from './ProjectCard.vue'
 import { portfolioData } from '@/data/portfolio'
 
@@ -77,6 +77,8 @@ const openProjectDetail = (project) => {
   selectedProject.value = project
   // 모달이 열릴 때 body 스크롤 막기
   document.body.style.overflow = 'hidden'
+  // 히스토리에 상태 추가
+  history.pushState({ modal: true }, '', window.location.href)
 }
 
 const closeModal = () => {
@@ -85,9 +87,22 @@ const closeModal = () => {
   document.body.style.overflow = 'auto'
 }
 
-// 컴포넌트 언마운트 시 스크롤 복원
+// 뒤로가기 버튼 처리
+const handlePopState = (event) => {
+  if (selectedProject.value) {
+    closeModal()
+  }
+}
+
+// 컴포넌트 마운트 시 이벤트 리스너 추가
+onMounted(() => {
+  window.addEventListener('popstate', handlePopState)
+})
+
+// 컴포넌트 언마운트 시 스크롤 복원 및 이벤트 리스너 제거
 onUnmounted(() => {
   document.body.style.overflow = 'auto'
+  window.removeEventListener('popstate', handlePopState)
 })
 </script>
 
