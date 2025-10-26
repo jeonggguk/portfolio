@@ -18,7 +18,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="contact-link"
-                >GitHub</a
+                >{{ personalInfo.github }}</a
               >
             </div>
           </div>

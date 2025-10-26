@@ -1,7 +1,7 @@
 <template>
   <section id="projects" class="projects-section">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title">Main Projects</h2>
       <div class="projects-grid">
         <ProjectCard
           v-for="project in displayedProjects"
@@ -30,15 +30,54 @@
           </div>
           <div class="modal-info">
             <div class="info-section">
-              <h4>프로젝트 기간</h4>
+              <h4>📅 Duration</h4>
               <p>{{ selectedProject.period }}</p>
             </div>
-            <div class="info-section">
-              <h4>프로젝트 설명</h4>
-              <p class="modal-description">{{ selectedProject.description }}</p>
+            <div v-if="selectedProject.service" class="info-section">
+              <h4>🚀 Service Overview</h4>
+              <p class="modal-description">{{ selectedProject.service }}</p>
             </div>
             <div class="info-section">
-              <h4>사용 기술</h4>
+              <h4>📝 Contributions</h4>
+              <p class="modal-description">{{ selectedProject.description }}</p>
+            </div>
+            <div
+              v-if="selectedProject.subImage || selectedProject.subVideo"
+              class="modal-sub-media"
+            >
+              <video
+                v-if="selectedProject.subVideo"
+                :src="selectedProject.subVideo"
+                class="modal-sub-video"
+                controls
+                preload="metadata"
+              >
+                브라우저가 비디오를 지원하지 않습니다.
+              </video>
+              <img
+                v-if="selectedProject.subImage"
+                :src="selectedProject.subImage"
+                :alt="selectedProject.title + ' 추가 이미지'"
+                class="modal-sub-img"
+              />
+              <p
+                v-if="selectedProject.subImageText || selectedProject.subVideoText"
+                class="modal-sub-media-text"
+              >
+                {{ selectedProject.subImageText || selectedProject.subVideoText }}
+              </p>
+            </div>
+            <div
+              v-if="selectedProject.Highlights || selectedProject.highlights"
+              class="info-section"
+            >
+              <h4>⭐ Key Highlights</h4>
+              <p class="modal-description">
+                {{ selectedProject.Highlights || selectedProject.highlights }}
+              </p>
+            </div>
+            <div class="info-section">
+              <h4>🛠️ Tech Stack</h4>
               <div class="modal-tech">
                 <span
                   v-for="tech in selectedProject.technologies"
@@ -66,7 +105,7 @@ const showAll = ref(false)
 const selectedProject = ref(null)
 
 const displayedProjects = computed(() => {
-  return showAll.value ? projects : projects.slice(0, 6)
+  return showAll.value ? projects : projects.slice(0, 4)
 })
 
 const toggleShowMore = () => {
@@ -299,6 +338,35 @@ onUnmounted(() => {
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.modal-sub-media {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.modal-sub-img {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-sub-video {
+  max-width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-sub-media-text {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* 모바일 반응형 모달 */
